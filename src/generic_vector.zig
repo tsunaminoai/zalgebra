@@ -7,18 +7,15 @@ const panic = std.debug.panic;
 
 pub const Vec2 = GenericVector(2, f32);
 pub const Vec2_f64 = GenericVector(2, f64);
-pub const Vec2_i32 = GenericVector(2, i32);
-pub const Vec2_usize = GenericVector(2, usize);
+pub const Vec2_f32 = GenericVector(2, f32);
 
 pub const Vec3 = GenericVector(3, f32);
 pub const Vec3_f64 = GenericVector(3, f64);
-pub const Vec3_i32 = GenericVector(3, i32);
-pub const Vec3_usize = GenericVector(3, usize);
+pub const Vec3_f32 = GenericVector(3, f32);
 
 pub const Vec4 = GenericVector(4, f32);
 pub const Vec4_f64 = GenericVector(4, f64);
-pub const Vec4_i32 = GenericVector(4, i32);
-pub const Vec4_usize = GenericVector(4, usize);
+pub const Vec4_f32 = GenericVector(4, f32);
 
 /// A generic vector.
 pub fn GenericVector(comptime dimensions: comptime_int, comptime T: type) type {
@@ -666,59 +663,35 @@ test "zalgebra.Vectors.fromSlice" {
 test "zalgebra.Vectors.cast" {
     // Vec2
     {
-        const a = Vec2_i32.new(3, 6);
-        const a_usize = Vec2_usize.new(3, 6);
-        try expectEqual(a.cast(usize), a_usize);
-
         const b = Vec2.new(3.5, 6.5);
         const b_f64 = Vec2_f64.new(3.5, 6.5);
         try expectEqual(b.cast(f64), b_f64);
 
-        const c = Vec2_i32.new(3, 6);
-        const c_f32 = Vec2.new(3, 6);
-        try expectEqual(c.cast(f32), c_f32);
-
         const d = Vec2.new(3, 6);
-        const d_i32 = Vec2_i32.new(3, 6);
-        try expectEqual(d.cast(i32), d_i32);
+        const d_f32 = Vec2_f32.new(3, 6);
+        try expectEqual(d.cast(f32), d_f32);
     }
 
     // Vec3
     {
-        const a = Vec3_i32.new(3, 6, 2);
-        const a_usize = Vec3_usize.new(3, 6, 2);
-        try expectEqual(a.cast(usize), a_usize);
-
         const b = Vec3.new(3.5, 6.5, 2);
         const b_f64 = Vec3_f64.new(3.5, 6.5, 2);
         try expectEqual(b.cast(f64), b_f64);
 
-        const c = Vec3_i32.new(3, 6, 2);
-        const c_f32 = Vec3.new(3, 6, 2);
-        try expectEqual(c.cast(f32), c_f32);
-
         const d = Vec3.new(3, 6, 2);
-        const d_i32 = Vec3_i32.new(3, 6, 2);
-        try expectEqual(d.cast(i32), d_i32);
+        const d_f32 = Vec3_f32.new(3, 6, 2);
+        try expectEqual(d.cast(f32), d_f32);
     }
 
     // Vec4
     {
-        const a = Vec4_i32.new(3, 6, 2, 0);
-        const a_usize = Vec4_usize.new(3, 6, 2, 0);
-        try expectEqual(a.cast(usize), a_usize);
-
         const b = Vec4.new(3.5, 6.5, 2, 0);
         const b_f64 = Vec4_f64.new(3.5, 6.5, 2, 0);
         try expectEqual(b.cast(f64), b_f64);
 
-        const c = Vec4_i32.new(3, 6, 2, 0);
-        const c_f32 = Vec4.new(3, 6, 2, 0);
-        try expectEqual(c.cast(f32), c_f32);
-
         const d = Vec4.new(3, 6, 2, 0);
-        const d_i32 = Vec4_i32.new(3, 6, 2, 0);
-        try expectEqual(d.cast(i32), d_i32);
+        const d_f32 = Vec4_f32.new(3, 6, 2, 0);
+        try expectEqual(d.cast(f32), d_f32);
     }
 }
 

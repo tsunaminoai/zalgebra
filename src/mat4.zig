@@ -481,7 +481,7 @@ pub fn Mat4x4(comptime T: type) type {
             var result: Mat4x4(dest_type) = undefined;
             for (0..result.data.len) |column| {
                 for (0..result.data[column].len) |row| {
-                    result.data[column][row] = @floatCast(self.data[column][row]);
+                    result.data[column][row] = @as(dest_type, @floatCast(self.data[column][row]));
                 }
             }
             return result;

@@ -12,7 +12,7 @@ pub usingnamespace @import("quaternion.zig");
 pub fn toRadians(degrees: anytype) @TypeOf(degrees) {
     const T = @TypeOf(degrees);
 
-    if (@typeInfo(T) != .Float) {
+    if (@typeInfo(T) != .Float and @typeInfo(T) != .Int) {
         @compileError("Radians not implemented for " ++ @typeName(T));
     }
 
@@ -23,7 +23,7 @@ pub fn toRadians(degrees: anytype) @TypeOf(degrees) {
 pub fn toDegrees(radians: anytype) @TypeOf(radians) {
     const T = @TypeOf(radians);
 
-    if (@typeInfo(T) != .Float) {
+    if (@typeInfo(T) != .Float and @typeInfo(T) != .Int) {
         @compileError("Radians not implemented for " ++ @typeName(T));
     }
 
@@ -33,7 +33,7 @@ pub fn toDegrees(radians: anytype) @TypeOf(radians) {
 /// Linear interpolation between two floats.
 /// `t` is used to interpolate between `from` and `to`.
 pub fn lerp(comptime T: type, from: T, to: T, t: T) T {
-    if (@typeInfo(T) != .Float) {
+    if (@typeInfo(T) != .Float and @typeInfo(T) != .Int) {
         @compileError("Lerp not implemented for " ++ @typeName(T));
     }
 
@@ -68,4 +68,8 @@ test "zalgebra.lerp" {
     try expectEqual(lerp(f32, from, to, 0), 0);
     try expectEqual(lerp(f32, from, to, 0.5), 5);
     try expectEqual(lerp(f32, from, to, 1), 10);
+}
+
+test {
+    std.testing.refAllDeclsRecursive(@This());
 }
